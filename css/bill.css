@@ -1,0 +1,466 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background: linear-gradient(145deg, #2b1b3a 0%, #1a1a2e 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.bill-container {
+    max-width: 600px;
+    width: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.back-to-kitchen {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.back-to-kitchen:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(-5px);
+    color: white;
+}
+
+.back-to-kitchen i {
+    font-size: 1.2rem;
+}
+
+/* Bill Card */
+.bill-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 60px;
+    padding: 40px;
+    box-shadow: 0 50px 80px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.bill-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 209, 102, 0.1) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+    z-index: 0;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.bill-header {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 30px;
+}
+
+.bill-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #ffd166, #ffb347);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    box-shadow: 0 20px 30px rgba(255, 193, 7, 0.3);
+    animation: bounce 2s ease infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.bill-icon i {
+    font-size: 3rem;
+    color: #1a1a2e;
+}
+
+.bill-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #2b1b3a, #1a1a2e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+}
+
+.bill-subtitle {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+/* Pizza Mini Preview */
+.pizza-preview-mini {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 1;
+}
+
+.mini-pizza {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    border-radius: 50%;
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+}
+
+.mini-base {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 1;
+}
+
+.mini-sauce {
+    position: absolute;
+    width: 85%;
+    height: 85%;
+    top: 7.5%;
+    left: 7.5%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #ff6347, #c73e1e);
+    opacity: 0;
+    z-index: 2;
+    transition: opacity 0.3s ease;
+}
+
+.mini-sauce.active {
+    opacity: 0.6;
+}
+
+.mini-cheese {
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    top: 5%;
+    left: 5%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 40%, #ffd700, #d4a017);
+    opacity: 0;
+    z-index: 3;
+    transition: opacity 0.3s ease;
+    mix-blend-mode: overlay;
+}
+
+.mini-cheese.active {
+    opacity: 0.5;
+}
+
+.mini-toppings {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+}
+
+.mini-topping {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #dc143c;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Ingredients Bill */
+.ingredients-bill {
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: 40px;
+    padding: 30px;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 1;
+}
+
+.bill-section-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bill-section-title i {
+    color: #ffd166;
+}
+
+.bill-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.5s ease forwards;
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+@keyframes slideIn {
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.bill-item:nth-child(2) { animation-delay: 0.1s; }
+.bill-item:nth-child(3) { animation-delay: 0.2s; }
+.bill-item:nth-child(4) { animation-delay: 0.3s; }
+.bill-item:nth-child(5) { animation-delay: 0.4s; }
+.bill-item:nth-child(6) { animation-delay: 0.5s; }
+.bill-item:nth-child(7) { animation-delay: 0.6s; }
+.bill-item:nth-child(8) { animation-delay: 0.7s; }
+.bill-item:nth-child(9) { animation-delay: 0.8s; }
+
+.item-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+    color: #333;
+}
+
+.item-dot {
+    width: 8px;
+    height: 8px;
+    background: linear-gradient(135deg, #ffd166, #ffb347);
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.points-badge {
+    background: linear-gradient(135deg, #ffd166, #ffb347);
+    padding: 4px 12px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #1a1a2e;
+}
+
+.base-row {
+    background: rgba(255, 193, 7, 0.1);
+    border-radius: 30px;
+    padding: 12px 20px;
+    border-bottom: none;
+    margin-bottom: 10px;
+}
+
+.bill-separator {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ffd166, transparent);
+    margin: 20px 0;
+}
+
+.bill-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.total-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1a1a2e;
+}
+
+.total-label i {
+    color: #ffd166;
+    font-size: 1.8rem;
+}
+
+.total-value {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #ffd166, #ffb347);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Pizza Rating */
+.pizza-rating {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.rating-label {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.rating-stars {
+    display: flex;
+    gap: 8px;
+}
+
+.rating-stars i {
+    font-size: 1.8rem;
+    color: #ddd;
+    transition: all 0.3s ease;
+}
+
+.rating-stars i.active {
+    color: #ffd166;
+    animation: starPulse 0.5s ease;
+}
+
+@keyframes starPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* Bill Actions */
+.bill-actions {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.btn-print, .btn-new {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-print {
+    background: linear-gradient(135deg, #ffd166, #ffb347);
+    color: #1a1a2e;
+    box-shadow: 0 10px 20px rgba(255, 193, 7, 0.3);
+}
+
+.btn-print:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(255, 193, 7, 0.4);
+}
+
+.btn-new {
+    background: #1a1a2e;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-new:hover {
+    background: #2b1b3a;
+    transform: scale(1.05);
+}
+
+/* Fun Fact */
+.bill-fun-fact {
+    background: rgba(255, 209, 102, 0.1);
+    border-radius: 30px;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.95rem;
+    color: #1a1a2e;
+    position: relative;
+    z-index: 1;
+    border: 1px solid rgba(255, 209, 102, 0.3);
+}
+
+.bill-fun-fact i {
+    color: #ffd166;
+    font-size: 1.2rem;
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: white;
+        padding: 0;
+    }
+    
+    .back-to-kitchen,
+    .bill-actions,
+    .bill-fun-fact {
+        display: none;
+    }
+    
+    .bill-card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .bill-card {
+        padding: 30px 20px;
+    }
+    
+    .bill-header h1 {
+        font-size: 2rem;
+    }
+    
+    .total-value {
+        font-size: 2rem;
+    }
+    
+    .back-to-kitchen {
+        top: 15px;
+        left: 15px;
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+}

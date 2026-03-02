@@ -1,0 +1,414 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background: linear-gradient(145deg, #2b1b3a 0%, #1a1a2e 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.game-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    display: none;
+}
+
+/* Header */
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 60px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ffd166, #ffb347);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo i {
+    font-size: 2.2rem;
+    background: linear-gradient(135deg, #ffd166, #ffb347);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.score-badge {
+    background: linear-gradient(135deg, #ffd166, #ffb347);
+    padding: 12px 30px;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: #1a1a2e;
+    box-shadow: 0 10px 20px rgba(255, 193, 7, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.score-badge i {
+    color: #1a1a2e;
+    font-size: 1.6rem;
+}
+
+/* Pizza Studio */
+.pizza-studio {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.pizza-canvas {
+    position: relative;
+    width: 600px;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pizza-base {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.5));
+    z-index: 1;
+    animation: floatPizza 4s ease-in-out infinite;
+}
+
+@keyframes floatPizza {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(1deg); }
+}
+
+.topping-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Sauce Layer */
+.sauce-layer {
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #ff6347, #c73e1e);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    filter: blur(3px);
+    mix-blend-mode: multiply;
+}
+
+.sauce-layer.active {
+    opacity: 0.7;
+}
+
+/* Cheese Layer */
+.cheese-layer {
+    width: 85%;
+    height: 85%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 40%, #ffd700, #d4a017);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    filter: blur(4px);
+    mix-blend-mode: overlay;
+}
+
+.cheese-layer.active {
+    opacity: 0.6;
+}
+
+/* Toppings */
+.topping-item {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    filter: drop-shadow(0 5px 8px rgba(0, 0, 0, 0.3));
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.topping-item.active {
+    opacity: 1;
+    transform: scale(1) rotate(var(--rotation, 0deg));
+    animation: toppingAppear 0.5s ease-out;
+}
+
+@keyframes toppingAppear {
+    0% { transform: scale(0) rotate(-90deg); opacity: 0; }
+    70% { transform: scale(1.1) rotate(10deg); }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+/* Individual topping positions - keeping your existing positioning */
+.pepperoni-1 { top: 15%; left: 30%; --rotation: 15deg; }
+.pepperoni-2 { top: 25%; left: 60%; --rotation: -10deg; }
+.pepperoni-3 { top: 45%; left: 20%; --rotation: 25deg; }
+.pepperoni-4 { top: 55%; left: 70%; --rotation: -5deg; }
+.pepperoni-5 { top: 70%; left: 40%; --rotation: 30deg; }
+.pepperoni-6 { top: 35%; left: 45%; --rotation: -15deg; }
+.pepperoni-7 { top: 80%; left: 55%; --rotation: 8deg; }
+.pepperoni-8 { top: 10%; left: 55%; --rotation: -20deg; }
+
+.olive-1 { top: 20%; left: 25%; width: 35px; --rotation: 45deg; }
+.olive-2 { top: 30%; left: 70%; width: 35px; --rotation: -30deg; }
+.olive-3 { top: 50%; left: 30%; width: 35px; --rotation: 15deg; }
+.olive-4 { top: 65%; left: 60%; width: 35px; --rotation: 60deg; }
+.olive-5 { top: 75%; left: 20%; width: 35px; --rotation: -45deg; }
+.olive-6 { top: 40%; left: 50%; width: 35px; --rotation: 20deg; }
+.olive-7 { top: 85%; left: 45%; width: 35px; --rotation: -15deg; }
+.olive-8 { top: 15%; left: 75%; width: 35px; --rotation: 30deg; }
+
+/* Ingredients Panel */
+.ingredients-panel {
+    width: 400px;
+    background: rgba(30, 30, 46, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 40px;
+    padding: 30px;
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: slideInRight 0.8s ease-out;
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.panel-header {
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.panel-header h3 {
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.panel-header h3 i {
+    color: #ffd166;
+    margin-right: 10px;
+}
+
+.ingredients-hint {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+}
+
+.ingredients-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.ingredient-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 15px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.ingredient-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ffd166, #ffb347);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+.ingredient-item:hover {
+    transform: translateY(-5px);
+    border-color: #ffd166;
+    box-shadow: 0 10px 20px rgba(255, 209, 102, 0.2);
+}
+
+.ingredient-item.active {
+    background: linear-gradient(135deg, #ffd166, #ffb347);
+    border-color: transparent;
+}
+
+.ingredient-item.active .ingredient-icon,
+.ingredient-item.active span {
+    color: #1a1a2e;
+    position: relative;
+    z-index: 1;
+}
+
+.ingredient-item.active .ingredient-price {
+    background: #1a1a2e;
+    color: #ffd166;
+}
+
+.ingredient-icon {
+    font-size: 2rem;
+    color: white;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.ingredient-icon i {
+    filter: drop-shadow(0 5px 8px rgba(0, 0, 0, 0.3));
+}
+
+.ingredient-item span {
+    color: white;
+    font-weight: 500;
+    font-size: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.ingredient-price {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 3px 10px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+/* Icon colors */
+.sauce-icon i { color: #ff6347; }
+.cheese-icon i { color: #ffd700; }
+.pepperoni-icon i { color: #dc143c; }
+.olives-icon i { color: #2e8b57; }
+.mushroom-icon i { color: #d2b48c; }
+.pepper-icon i { color: #32cd32; }
+.onion-icon i { color: #dda0dd; }
+.basil-icon i { color: #228b22; }
+.tomato-icon i { color: #ff4500; }
+
+.base-item {
+    opacity: 0.5;
+    cursor: not-allowed;
+    grid-column: span 2;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px 20px;
+}
+
+.base-item .ingredient-icon i {
+    color: #d2691e;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn-reset, .btn-next {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-reset {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-reset:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+.btn-next {
+    background: linear-gradient(135deg, #ffd166, #ffb347);
+    color: #1a1a2e;
+    box-shadow: 0 10px 20px rgba(255, 193, 7, 0.3);
+}
+
+.btn-next:hover {
+    transform: scale(1.05) translateX(5px);
+    box-shadow: 0 15px 30px rgba(255, 193, 7, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .game-container {
+        padding: 15px;
+    }
+    
+    .pizza-canvas {
+        width: 450px;
+        height: 450px;
+    }
+    
+    .ingredients-panel {
+        width: 350px;
+    }
+}
+
+@media (max-width: 900px) {
+    .game-container {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .pizza-canvas {
+        width: 400px;
+        height: 400px;
+        margin: 0 auto;
+    }
+    
+    .ingredients-panel {
+        width: 100%;
+        margin-top: 30px;
+    }
+}
