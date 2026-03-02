@@ -74,11 +74,6 @@
 <div align="center">
   <table>
     <tr>
-      <td><img src="img/screenshot1.png" alt="Builder Screen" width="250"></td>
-      <td><img src="img/screenshot2.png" alt="Toppings Panel" width="250"></td>
-      <td><img src="img/screenshot3.png" alt="Bill Screen" width="250"></td>
-    </tr>
-    <tr>
       <td align="center"><b>Pizza Builder</b></td>
       <td align="center"><b>Ingredient Panel</b></td>
       <td align="center"><b>Recipe Bill</b></td>
@@ -113,3 +108,4 @@
   <br>
   <br>
 </div>
+
