@@ -1,0 +1,45 @@
+.app-shell.narrow { max-width: 640px; }
+
+.bill-card {
+    background: var(--panel);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    box-shadow: var(--shadow-deep);
+}
+.bill-header { text-align: center; margin-bottom: 22px; }
+.bill-icon {
+    width: 70px; height: 70px; margin: 0 auto 12px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--ember-2), var(--ember));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+    animation: floatY 2.4s ease-in-out infinite;
+}
+.bill-header h1 { font-size: 1.8rem; }
+
+.ticket-list-item { display:flex; justify-content: space-between; font-size:.82rem; padding: 2px 0; }
+
+.rating-breakdown { display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px; }
+.rb-row { display: grid; grid-template-columns: 120px 1fr 46px; align-items: center; gap: 10px; font-size: .85rem; }
+.rb-track { height: 10px; border-radius: 20px; background: rgba(0,0,0,.3); overflow: hidden; }
+.rb-fill { height: 100%; background: linear-gradient(90deg, var(--ember), var(--good)); border-radius: 20px; transition: width .6s ease; }
+
+.final-rating { text-align: center; margin-top: 20px; }
+.stars { font-size: 2rem; letter-spacing: 4px; }
+.reward-grid { display: flex; justify-content: center; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+.reward-chip {
+    background: rgba(0,0,0,.25);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 30px;
+    padding: 8px 16px;
+    font-weight: 600;
+    font-size: .9rem;
+}
+.reward-chip b { color: var(--ember-2); margin-left: 4px; }
+
+@media print {
+    .topbar, .order-actions, .toast-stack { display: none !important; }
+    body { background: white; color: black; }
+    .bill-card { box-shadow: none; border: 1px solid #ccc; }
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kitchen · Pizza House</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/kitchen.css">
+</head>
+<body>
+
+<div class="toast-stack" id="toastStack"></div>
+
+<div class="app-shell">
+    <div class="topbar">
+        <div class="logo"><span class="flame">🔥</span> Pizza House — Kitchen</div>
+        <div class="stat-row">
+            <div class="stat-pill">💰 <b id="statMoney">0</b></div>
+            <a class="btn btn-ghost" href="index.html" style="padding:8px 16px;">← Menu</a>
+        </div>
+    </div>
+
+    <div class="stage-tabs" id="stageTabs"></div>
+
+    <div class="kitchen-grid">
+
+        <!-- Pizza canvas -->
+        <div class="panel canvas-col">
+            <div id="orderRecap" class="ticket ticket-mini"></div>
+
+            <div class="pizza-canvas-wrap">
+                <div class="pizza-canvas" id="pizzaCanvas">
+                    <div class="crust" id="crustEl"></div>
+                    <div class="sauce-layer" id="sauceLayerEl"></div>
+                    <div class="cheese-layer" id="cheeseLayerEl"></div>
+                    <div class="toppings-layer" id="toppingsLayerEl"></div>
+                </div>
+            </div>
+            <div class="canvas-caption" id="canvasCaption">Pick a size to begin</div>
+        </div>
+
+        <!-- Stage controls -->
+        <div class="panel stage-col">
+            <div id="stageContent"></div>
+            <div class="stage-nav">
+                <button class="btn btn-ghost" id="btnBack">← Back</button>
+                <button class="btn btn-primary" id="btnNext">Next →</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/ingredients.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/kitchen.js"></script>
+</body>
+</html>

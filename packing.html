@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Packing · Pizza House</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/packing.css">
+</head>
+<body>
+
+<div class="toast-stack" id="toastStack"></div>
+
+<div class="app-shell">
+    <div class="topbar">
+        <div class="logo"><span class="flame">🔥</span> Pizza House — Packing</div>
+        <div class="stat-row">
+            <a class="btn btn-ghost" href="index.html" style="padding:8px 16px;">← Menu</a>
+        </div>
+    </div>
+
+    <div class="packing-grid">
+
+        <!-- Cutting -->
+        <div class="panel">
+            <h2>🔪 Cut the Pizza</h2>
+            <p class="hint">Choose how many slices this order needs.</p>
+            <div class="slice-row" id="sliceRow"></div>
+
+            <div class="pizza-cut-wrap">
+                <div class="pizza-cut" id="pizzaCutVisual">
+                    <div class="cut-lines" id="cutLines"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Box packing -->
+        <div class="panel">
+            <h2>📦 Pack the Box</h2>
+            <p class="hint">Complete each step before closing the box.</p>
+
+            <div class="pack-steps" id="packSteps">
+                <button class="pack-step" data-step="napkins">🧻 Add Napkins</button>
+                <button class="pack-step" data-step="sauce">🥫 Add Sauce Packet</button>
+                <button class="pack-step" data-step="sticker">✨ Add Sticker</button>
+            </div>
+
+            <div class="name-print">
+                <label class="hint" for="nameInput">Customer name for the box</label>
+                <div class="name-print-row">
+                    <input id="nameInput" type="text" maxlength="20">
+                    <button class="btn btn-primary" id="btnPrintName">🖊️ Print on Box</button>
+                </div>
+                <div id="printProgressWrap" style="display:none;">
+                    <div class="meter-track"><div class="meter-fill" id="printFill" style="width:0%"></div></div>
+                </div>
+            </div>
+
+            <div class="box-visual" id="boxVisual">
+                <div class="box-lid">🍕 PIZZA HOUSE</div>
+                <div class="box-label">
+                    <div class="box-name" id="boxName">— — —</div>
+                    <div class="box-sub" id="boxSub"></div>
+                    <div class="box-tag">Fresh • Hot • Delicious</div>
+                </div>
+            </div>
+
+            <div class="order-actions" style="margin-top:20px;">
+                <button class="btn btn-primary" id="btnCloseBox" disabled>✅ Close Box &amp; Continue</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/ingredients.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/packing.js"></script>
+</body>
+</html>

@@ -1,94 +1,119 @@
-/* Additional Animations */
+/* ============================================================
+   Shared animation keyframes — used across every screen
+   ============================================================ */
 
-/* Topping Add Animation */
-@keyframes addIngredient {
-    0% {
-        transform: scale(0) rotate(-180deg);
-        opacity: 0;
-    }
-    50% {
-        transform: scale(1.2) rotate(10deg);
-    }
-    100% {
-        transform: scale(1) rotate(0deg);
-        opacity: 1;
-    }
+@keyframes floatY {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
 
-.ingredient-added {
-    animation: addIngredient 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+@keyframes spinSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
-/* Remove Animation */
-@keyframes removeIngredient {
-    0% {
-        transform: scale(1) rotate(0deg);
-        opacity: 1;
-    }
-    100% {
-        transform: scale(0) rotate(90deg);
-        opacity: 0;
-    }
-}
-
-.ingredient-removed {
-    animation: removeIngredient 0.3s ease forwards;
-}
-
-/* Button Glow */
-@keyframes buttonGlow {
-    0%, 100% {
-        box-shadow: 0 10px 20px rgba(255, 193, 7, 0.3);
-    }
-    50% {
-        box-shadow: 0 20px 40px rgba(255, 193, 7, 0.5);
-    }
-}
-
-.btn-next {
-    animation: buttonGlow 2s ease infinite;
-}
-
-/* Score Pop */
-@keyframes scorePop {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.2); }
+@keyframes popIn {
+    0% { transform: scale(0.4); opacity: 0; }
+    60% { transform: scale(1.08); opacity: 1; }
     100% { transform: scale(1); }
 }
 
-.score-pop {
-    animation: scorePop 0.3s ease;
+@keyframes scorePop {
+    0% { transform: translate(-50%, 0) scale(0.6); opacity: 0; }
+    20% { transform: translate(-50%, -10px) scale(1.1); opacity: 1; }
+    100% { transform: translate(-50%, -70px) scale(1); opacity: 0; }
 }
 
-/* Floating Particles */
-.particle {
+.score-popup {
     position: absolute;
-    width: 10px;
-    height: 10px;
-    background: rgba(255, 209, 102, 0.5);
-    border-radius: 50%;
+    left: 50%;
+    font-weight: 800;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.3rem;
     pointer-events: none;
-    z-index: 1000;
+    animation: scorePop 1s ease forwards;
+    z-index: 50;
+    text-shadow: 0 3px 8px rgba(0,0,0,.35);
+}
+.score-popup.positive { color: #7CE38B; }
+.score-popup.negative { color: #ff6b6b; }
+
+/* toast / achievement notification */
+@keyframes toastIn {
+    from { transform: translate(-50%, -30px); opacity: 0; }
+    to { transform: translate(-50%, 0); opacity: 1; }
+}
+.toast-stack {
+    position: fixed;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 4000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    pointer-events: none;
+}
+.toast {
+    background: rgba(22, 16, 28, 0.92);
+    border: 1px solid rgba(255, 178, 84, 0.4);
+    color: #fdf1de;
+    padding: 10px 22px;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: .95rem;
+    box-shadow: 0 12px 24px rgba(0,0,0,.4);
+    animation: toastIn .35s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
 }
 
-@keyframes floatParticle {
-    0% {
-        transform: translateY(0) translateX(0);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-100px) translateX(50px);
-        opacity: 0;
-    }
+/* steam */
+.steam-wrap { position: relative; }
+.steam {
+    position: absolute;
+    bottom: 60%;
+    width: 10px;
+    height: 30px;
+    background: rgba(255,255,255,.55);
+    border-radius: 50%;
+    filter: blur(4px);
+    animation: steamRise 1.8s ease-in infinite;
+    opacity: 0;
+}
+@keyframes steamRise {
+    0% { opacity: 0; transform: translateY(0) scale(0.6); }
+    30% { opacity: .8; }
+    100% { opacity: 0; transform: translateY(-70px) scale(1.4) translateX(6px); }
 }
 
-/* Success Checkmark */
-@keyframes checkmark {
-    0% { transform: scale(0); opacity: 0; }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(1); opacity: 1; }
+/* confetti */
+.confetti-piece {
+    position: fixed;
+    top: -20px;
+    width: 9px;
+    height: 14px;
+    z-index: 5000;
+    opacity: 0.95;
+    animation: confettiFall linear forwards;
+}
+@keyframes confettiFall {
+    to { transform: translateY(110vh) rotate(540deg); opacity: 0.2; }
 }
 
-.checkmark {
-    animation: checkmark 0.5s ease;
+/* generic fade */
+.fade-in { animation: fadeIn .4s ease both; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px);} to { opacity: 1; transform: translateY(0);} }
+
+/* button press */
+.btn:active { transform: scale(.96); }
+
+/* flashing burn warning */
+@keyframes burnFlash {
+    0%, 100% { box-shadow: inset 0 0 0 0 rgba(229,72,77,0); }
+    50% { box-shadow: inset 0 0 120px 10px rgba(229,72,77,.55); }
 }
+.burn-warning { animation: burnFlash .6s ease-in-out infinite; }
