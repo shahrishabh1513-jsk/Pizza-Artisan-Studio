@@ -137,12 +137,6 @@ billing.html    bill → rating → money + XP → achievements
    └──────────────► back to index.html
 ```
 
-`sessionStorage` (`pzOrder`, `pzPizza`, `pzOven`, `pzPacking`, `pzTimings`)
-carries the **current** order through that loop and is cleared on every
-new order. `localStorage` (`pizzaHouse_save_v1`) holds your **permanent**
-progress — money, XP, level, orders completed, average rating, and
-unlocked achievements — and survives closing the tab.
-
 ---
 
 ## 🔊 Adding real art & sound
