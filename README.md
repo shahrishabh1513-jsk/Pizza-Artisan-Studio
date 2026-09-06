@@ -153,16 +153,6 @@ To upgrade it:
   `AudioManager.play()` silently does nothing if a file is missing, so
   you can add them one at a time with zero console errors.
 
----
-
-## 🗺️ Not in this build (yet)
-
-To keep this version fully working end-to-end rather than half-stubbed,
-the ingredient shop, restaurant upgrade tree, multi-customer order queue
-with patience hearts, and daily missions were left out. The save,
-scoring and UI systems are modular (`js/storage.js`, `js/scoring.js`,
-`js/ui.js`) so any of these can be layered on top without touching the
-core game loop.
 
 <div align="center">
 <sub>Built with 🔥, 🍕 and vanilla JavaScript.</sub>
