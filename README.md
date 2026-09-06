@@ -1,129 +1,186 @@
-# 🍕 Pizza House — Pizza Chef Simulator
+<div align="center">
 
-A complete redesign of your original pizza game into a full restaurant
-simulator: take a customer order, build the pizza stage by stage, bake it,
-cut it, pack it, print the customer's name on the box, and get rated and
-paid — all saved between visits.
+<img src="images/banner.svg" alt="Pizza House — Pizza Chef Simulator" width="100%">
 
-## How to run it
+<p>
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white">
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+  <img src="https://img.shields.io/badge/No%20Framework-Vanilla%20JS-ff7a3d?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Status-Playable-59c97b?style=for-the-badge">
+</p>
 
-No build step, no server required.
+<h3>🍕 Take the order → build it right → bake it perfect → deliver on time 🍕</h3>
 
-1. Unzip / copy the `pizza-chef-game` folder anywhere.
-2. Open `index.html` directly in a browser (double-click it), **or** for
-   the smoothest experience serve it locally, e.g.:
-   ```
-   cd pizza-chef-game
-   python3 -m http.server 8080
-   ```
-   then visit `http://localhost:8080`.
+</div>
 
-## Game flow
+---
 
-```
-index.html (menu + dashboard)
-     ↓ New Order → Start Cooking
-kitchen.html   → size → dough → sauce → cheese → toppings
-     ↓ Send to Oven
-oven.html      → pick temperature → bake in real time → take it out
-     ↓ Continue to Cutting
-packing.html   → cut into slices → pack the box → print customer name
-     ↓ Close Box & Continue
-billing.html   → itemised bill, star rating, money + XP, achievements
-     ↓ Next Order
-back to index.html
-```
+## 🎮 Live Preview
 
-`sessionStorage` carries the *current* order/pizza through that flow
-(`pzOrder`, `pzPizza`, `pzOven`, `pzPacking`, `pzTimings`) and is cleared
-whenever you start a new order. `localStorage` (`pizzaHouse_save_v1`)
-holds your permanent progress: money, XP, level, orders completed,
-average rating and unlocked achievements — this survives closing the tab.
+<div align="center">
+<img src="images/preview.svg" alt="Kitchen, Oven and Billing screens" width="100%">
+</div>
 
-## What's implemented
+<p align="center"><sub>Every layer above is real, animated markup — not a screenshot — the same style the game itself uses.</sub></p>
 
-- Random customer + order ticket (name, personality, pizza type, size,
-  sauce, cheese, required toppings, extra cheese, time limit)
-- 7 pizza recipes (Margherita, Pepperoni, Farmhouse, Veggie Supreme,
-  Mexican Wave, Cheese Burst, Paneer Tikka) plus a fully open toppings tray
-- 4 sizes with real price differences, 4 sauces, 3 cheeses, 14 toppings
-  (including the new corn, pineapple, jalapeño, chili, spinach, paneer,
-  extra cheese)
-- Interactive dough mini-game (stretch slider with a target zone)
-- Click-and-drag sauce painting with a live coverage % and rating
-  (Excellent / Good / Poor / Bad)
-- Drag-and-drop **and** tap-to-place toppings, capped per-topping, with
-  click-to-remove
-- Real-time oven: pick a temperature, watch a live bake-progress meter,
-  golden→crispy→burnt visual states, and a flashing burn warning if you
-  leave it in too long
-- Slice count selection with an animated cut overlay
-- Packing checklist (napkins, sauce packet, sticker) plus a name-printing
-  mini-animation that reveals the customer's name on the pizza box label
-- Full itemised bill, a 4-factor rating breakdown (accuracy / bake /
-  packaging / speed), star rating, money + XP payout, confetti on a great
-  score
-- Persistent money, XP, chef level & title, high score, average rating,
-  and an achievement system (first pizza, 10/50/100 orders, 10 five-star
-  reviews, ₹10,000 milestone)
-- "Reset current pizza" (just navigate back to the menu — nothing
-  permanent is touched) vs. a separate, confirmed "Reset Progress" button
-  that wipes `localStorage`
-- Fully responsive layout (desktop → tablet → mobile), no external JS
-  frameworks — vanilla HTML/CSS/JS only
+---
 
-## About images and audio
+## 📖 About
 
-This build renders the pizza, oven, and box entirely with CSS gradients,
-shapes and emoji so the game works perfectly with **zero** external
-asset files — nothing to break, nothing to 404.
-
-If you'd like to swap in real artwork/sound:
-
-- Drop PNGs into `images/` following the folder layout below and swap the
-  relevant CSS `background`/emoji for an `<img>` or `background-image`.
-- Drop matching MP3s into `audio/` using the exact filenames listed in
-  `js/audio.js` (`click.mp3`, `topping.mp3`, `sauce.mp3`, `cheese.mp3`,
-  `oven-open.mp3`, `oven-close.mp3`, `baking.mp3`, `success.mp3`,
-  `packing.mp3`, `delivery.mp3`, `game-over.mp3`). `AudioManager.play()`
-  silently no-ops if a file is missing, so you can add them one at a
-  time without ever seeing a console error.
-
-Suggested image folders (create these under `images/` if you add art):
-`pizzas/`, `bases/`, `toppings/`, `sauces/`, `cheese/`, `oven/`,
-`packaging/`, `customers/`, `ui/`.
-
-## Not included in this pass
-
-To keep the delivered game genuinely complete and bug-free rather than a
-pile of half-built stubs, a few of the more ambitious systems from the
-brief were intentionally left out of this version: the ingredient
-shop/restocking, restaurant upgrade tree, multi-customer order queue with
-patience hearts, and daily missions. The scoring, save and UI systems are
-modular (see `js/scoring.js`, `js/storage.js`) so any of these can be
-layered on top later without touching the core game loop.
-
-## File structure
+**Pizza House** is a from-scratch redesign of a simple ingredient-picker
+into a full **Pizza Chef Simulator**. You greet a random customer, build
+their exact order in the kitchen, bake it in a live oven, cut and pack the
+box, print their name on it, and get paid based on how well you did —
+all in plain HTML, CSS and JavaScript, no frameworks, no build step.
 
 ```
+ CUSTOMER ORDER → KITCHEN → OVEN → CUTTING & PACKING → BILLING → ⭐ RATING → NEXT ORDER
+```
+
+---
+
+## ✨ Features
+
+| Stage | What happens |
+|---|---|
+| 🎫 **Order** | A random customer, personality, pizza type, size, and required toppings are generated onto a receipt-style ticket |
+| 🥣 **Dough** | Stretch-the-slider mini-game — land in the target zone or get *"Uneven Dough!"* |
+| 🍅 **Sauce** | Click-and-drag to paint sauce directly onto the pizza; live coverage % and rating |
+| 🧀 **Cheese** | Mozzarella, Cheddar, or Cheese Burst |
+| 🌶️ **Toppings** | 14 toppings, drag-and-drop **or** tap-to-place, each capped and removable |
+| 🔥 **Oven** | Pick a real temperature, watch a live bake meter, golden → crispy → **burnt**, with a flashing burn warning |
+| 🔪 **Cutting** | 4 / 6 / 8 / 10 slice options with an animated cut overlay |
+| 📦 **Packing** | Napkins, sauce packet, sticker, and a name-printing animation onto the box label |
+| 🧾 **Billing** | Itemised bill, 4-factor rating (accuracy / bake / packaging / speed), stars, payout, confetti |
+| 🏆 **Progress** | Money, XP, chef level & title, high score, average rating, and unlockable achievements — all saved automatically |
+
+---
+
+## 📁 Folder Structure
+
+```text
 pizza-chef-game/
-├── index.html      – menu & dashboard
-├── kitchen.html     – size / dough / sauce / cheese / toppings
-├── oven.html        – baking
-├── packing.html      – cutting, packing, name printing
-├── billing.html      – bill, rating, payout
+│
+├── index.html              → main menu & restaurant dashboard
+├── kitchen.html             → size · dough · sauce · cheese · toppings
+├── oven.html                → live baking mini-game
+├── packing.html              → cutting, packing checklist, name printing
+├── billing.html              → itemised bill, rating & payout
+├── README.md
+│
 ├── css/
-│   ├── style.css      – design tokens + shared components + menu
-│   ├── animations.css  – shared keyframes (confetti, steam, toasts…)
-│   ├── kitchen.css, oven.css, packing.css, billing.css
+│   ├── style.css              → design tokens, shared components, menu styling
+│   ├── animations.css          → shared keyframes (confetti, steam, toasts…)
+│   ├── kitchen.css
+│   ├── oven.css
+│   ├── packing.css
+│   └── billing.css
+│
 ├── js/
-│   ├── ingredients.js  – all prices/points/recipes in one place
-│   ├── storage.js     – save file + achievements
-│   ├── customer.js    – order generation
-│   ├── scoring.js     – accuracy / bake / rating / payout maths
-│   ├── audio.js       – safe optional sound manager
-│   ├── ui.js         – toasts & confetti helpers
-│   ├── game.js, kitchen.js, oven.js, packing.js, billing.js
-├── images/  (empty — see "About images and audio")
-└── audio/   (empty — see "About images and audio")
+│   ├── ingredients.js          → every recipe / price / point value, in one place
+│   ├── storage.js             → localStorage save file + achievements
+│   ├── customer.js            → random customer & order generation
+│   ├── scoring.js             → accuracy · bake · rating · payout maths
+│   ├── audio.js               → safe, optional sound manager (never throws)
+│   ├── ui.js                  → shared toasts & confetti helpers
+│   ├── game.js                → index.html logic
+│   ├── kitchen.js              → kitchen.html logic
+│   ├── oven.js                → oven.html logic
+│   ├── packing.js              → packing.html logic
+│   └── billing.js              → billing.html logic
+│
+├── images/
+│   ├── banner.svg              → animated hero banner (this README)
+│   └── preview.svg             → animated screen preview (this README)
+│
+└── audio/                     → optional — drop matching .mp3 files in to enable sound
 ```
+
+---
+
+## 🚀 Getting Started
+
+No installation, no dependencies.
+
+```bash
+# 1. unzip / copy the pizza-chef-game folder anywhere
+
+# 2. open it directly
+open index.html          # or just double-click it
+
+# — or serve it locally for the smoothest experience —
+cd pizza-chef-game
+python3 -m http.server 8080
+# then visit http://localhost:8080
+```
+
+---
+
+## 🧭 Game Flow
+
+```text
+index.html
+   │  New Order → Start Cooking
+   ▼
+kitchen.html   size → dough → sauce → cheese → toppings
+   │  Send to Oven
+   ▼
+oven.html      pick temperature → bake in real time → take it out
+   │  Continue to Cutting
+   ▼
+packing.html    cut slices → pack box → print customer name
+   │  Close Box & Continue
+   ▼
+billing.html    bill → rating → money + XP → achievements
+   │  Next Order
+   └──────────────► back to index.html
+```
+
+`sessionStorage` (`pzOrder`, `pzPizza`, `pzOven`, `pzPacking`, `pzTimings`)
+carries the **current** order through that loop and is cleared on every
+new order. `localStorage` (`pizzaHouse_save_v1`) holds your **permanent**
+progress — money, XP, level, orders completed, average rating, and
+unlocked achievements — and survives closing the tab.
+
+---
+
+## 🔊 Adding real art & sound
+
+The pizza, oven and box are drawn entirely with CSS + emoji so the game
+works with **zero** external assets out of the box — nothing to break,
+nothing to 404.
+
+To upgrade it:
+- Drop PNGs into `images/` and swap the relevant CSS background / emoji for an `<img>`.
+- Drop MP3s into `audio/` using the exact names in `js/audio.js`
+  (`click`, `topping`, `sauce`, `cheese`, `oven-open`, `oven-close`,
+  `baking`, `success`, `packing`, `delivery`, `game-over`).
+  `AudioManager.play()` silently does nothing if a file is missing, so
+  you can add them one at a time with zero console errors.
+
+---
+
+## 🛠️ Tech Stack
+
+<p>
+<img src="https://img.shields.io/badge/-Vanilla%20JavaScript-323330?style=flat-square&logo=javascript&logoColor=F7DF1E">
+<img src="https://img.shields.io/badge/-CSS%20Grid%20%26%20Flexbox-1572B6?style=flat-square&logo=css3&logoColor=white">
+<img src="https://img.shields.io/badge/-localStorage%20%2F%20sessionStorage-4CAF50?style=flat-square">
+<img src="https://img.shields.io/badge/-Zero%20Dependencies-black?style=flat-square">
+</p>
+
+---
+
+## 🗺️ Not in this build (yet)
+
+To keep this version fully working end-to-end rather than half-stubbed,
+the ingredient shop, restaurant upgrade tree, multi-customer order queue
+with patience hearts, and daily missions were left out. The save,
+scoring and UI systems are modular (`js/storage.js`, `js/scoring.js`,
+`js/ui.js`) so any of these can be layered on top without touching the
+core game loop.
+
+<div align="center">
+<sub>Built with 🔥, 🍕 and vanilla JavaScript.</sub>
+</div>
