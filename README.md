@@ -155,17 +155,6 @@ To upgrade it:
 
 ---
 
-## 🛠️ Tech Stack
-
-<p>
-<img src="https://img.shields.io/badge/-Vanilla%20JavaScript-323330?style=flat-square&logo=javascript&logoColor=F7DF1E">
-<img src="https://img.shields.io/badge/-CSS%20Grid%20%26%20Flexbox-1572B6?style=flat-square&logo=css3&logoColor=white">
-<img src="https://img.shields.io/badge/-localStorage%20%2F%20sessionStorage-4CAF50?style=flat-square">
-<img src="https://img.shields.io/badge/-Zero%20Dependencies-black?style=flat-square">
-</p>
-
----
-
 ## 🗺️ Not in this build (yet)
 
 To keep this version fully working end-to-end rather than half-stubbed,
