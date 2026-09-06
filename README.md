@@ -153,6 +153,20 @@ To upgrade it:
   `AudioManager.play()` silently does nothing if a file is missing, so
   you can add them one at a time with zero console errors.
 
+---
+
+## 📬 Contact
+
+<div align="center">
+
+**Rishabh Alpeshabhai Shah**
+
+[![Portfolio](https://img.shields.io/badge/Portfolio-8E2DE2?style=for-the-badge&logo=netlify&logoColor=white)](https://rishabh-shah-portfolio.netlify.app/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/rishabh-alpeshabhai-shah-91b9072a6/)
+[![Gmail](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:shahrishu1515@gmail.com)
+[![WhatsApp](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/917861976128)
+
+</div>
 
 <div align="center">
 <sub>Built with 🔥, 🍕 and vanilla JavaScript.</sub>
